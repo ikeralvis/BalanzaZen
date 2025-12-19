@@ -33,6 +33,12 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
+    /* Auto dark mode variables if needed, OR we can rely on .dark class if next-themes is used */
+    /* keeping this for system preference fallback, but usually next-themes handles class */
+  }
+}
+
+.dark {
     --background: #09090b; /* Zinc-950 */
     --foreground: #fafafa;
 
@@ -60,7 +66,6 @@
     --border: #27272a;
     --input: #27272a;
     --ring: #d4d4d8;
-  }
 }
 
 body {

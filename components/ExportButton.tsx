@@ -2,8 +2,7 @@
 
 import { useState } from 'react'
 import { getMeasurementsForExport } from '@/app/profile/actions'
-import { Download, Loader2, FileText } from 'lucide-react'
-import { cn } from '@/utils/cn'
+import { Download, Loader2 } from 'lucide-react'
 
 export default function ExportButton({ range = 'all' }: { range?: string }) {
     const [isLoading, setIsLoading] = useState(false)
@@ -53,22 +52,14 @@ export default function ExportButton({ range = 'all' }: { range?: string }) {
         <button
             onClick={handleExport}
             disabled={isLoading}
-            className={cn(
-                "group relative flex w-full items-center justify-center gap-3 overflow-hidden rounded-2xl bg-white/5 p-4 text-sm font-medium text-foreground ring-1 ring-inset ring-black/5 transition-all hover:bg-white/10 active:scale-[0.98] disabled:opacity-50 dark:bg-white/5 dark:ring-white/10 dark:hover:bg-white/10",
-                "glass shadow-sm"
-            )}
+            className="inline-flex items-center justify-center gap-2 rounded-xl bg-foreground text-background px-4 py-2.5 text-sm font-medium hover:opacity-90 disabled:opacity-70 transition-opacity"
         >
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-indigo-500/10 text-indigo-500 dark:bg-indigo-400/10 dark:text-indigo-400">
-                {isLoading ? (
-                    <Loader2 className="h-5 w-5 animate-spin" />
-                ) : (
-                    <Download className="h-5 w-5" />
-                )}
-            </div>
-            <div className="flex flex-col items-start gap-0.5">
-                <span className="text-base font-semibold">Exportar Datos</span>
-                <span className="text-xs text-muted-foreground">Formato CSV para Excel/Sheets</span>
-            </div>
+            {isLoading ? (
+                <Loader2 className="h-4 w-4 animate-spin" />
+            ) : (
+                <Download className="h-4 w-4" />
+            )}
+            Exportar CSV
         </button>
     )
 }

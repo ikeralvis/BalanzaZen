@@ -37,8 +37,8 @@ export default async function RootLayout({
         <html lang="es" suppressHydrationWarning>
             <body className={`${GeistSans.variable} ${GeistMono.variable} antialiased bg-background text-foreground min-h-screen selection:bg-indigo-500/30 selection:text-indigo-500`}>
                 <Providers>
-                    {children}
                     <Navbar userId={user?.id} />
+                    {children}
                 </Providers>
             </body>
         </html>

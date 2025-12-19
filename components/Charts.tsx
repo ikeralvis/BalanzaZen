@@ -25,7 +25,7 @@ interface Measurement {
 const CustomTooltip = ({ active, payload, label }: any) => { // Using any for recharts ease, optimizing later if needed
     if (active && payload && payload.length) {
         return (
-            <div className="rounded-xl border border-border/50 bg-background/80 backdrop-blur-xl p-3 shadow-xl ring-1 ring-black/5">
+            <div className="rounded-xl border border-white/10 bg-background/90 backdrop-blur-xl p-3 shadow-xl">
                 <p className="text-sm font-medium text-foreground mb-2">{label}</p>
                 {payload.map((entry: any, index: number) => (
                     <p key={index} className="text-sm text-muted-foreground">
@@ -47,14 +47,14 @@ export default function Charts({ data }: { data: Measurement[] }) {
     }))
 
     return (
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
             {/* Weight Chart */}
-            <div className="rounded-3xl bg-white/50 p-6 shadow-sm ring-1 ring-black/5 dark:bg-white/5 dark:ring-white/10 backdrop-blur-xl">
-                <h3 className="mb-6 text-lg font-semibold tracking-tight text-foreground">
+            <div className="rounded-2xl bg-white/5 backdrop-blur-xl p-5 border border-white/10 ring-1 ring-white/5">
+                <h3 className="mb-4 text-lg font-semibold tracking-tight text-foreground">
                     Progreso de Peso
                 </h3>
-                <div className="h-72 w-full">
-                    <ResponsiveContainer width="100%" height="100%">
+                <div className="h-72 w-full" style={{ minWidth: 0, minHeight: 200 }}>
+                    <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={200}>
                         <LineChart data={chartData}>
                             <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="currentColor" className="text-muted-foreground/20" />
                             <XAxis
@@ -92,12 +92,12 @@ export default function Charts({ data }: { data: Measurement[] }) {
             </div>
 
             {/* Body Composition Chart */}
-            <div className="rounded-3xl bg-white/50 p-6 shadow-sm ring-1 ring-black/5 dark:bg-white/5 dark:ring-white/10 backdrop-blur-xl">
-                <h3 className="mb-6 text-lg font-semibold tracking-tight text-foreground">
+            <div className="rounded-2xl bg-white/5 backdrop-blur-xl p-5 border border-white/10 ring-1 ring-white/5">
+                <h3 className="mb-4 text-lg font-semibold tracking-tight text-foreground">
                     Composición Corporal
                 </h3>
-                <div className="h-72 w-full">
-                    <ResponsiveContainer width="100%" height="100%">
+                <div className="h-72 w-full" style={{ minWidth: 0, minHeight: 200 }}>
+                    <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={200}>
                         <LineChart data={chartData}>
                             <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="currentColor" className="text-muted-foreground/20" />
                             <XAxis

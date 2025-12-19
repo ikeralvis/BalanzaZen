@@ -28,26 +28,26 @@ function StatCard({ label, value, unit, prevValue, inverse = false }: StatCardPr
     let trendColor = 'text-muted-foreground'
     if (!isNeutral) {
         if (inverse) {
-            trendColor = isNegative ? 'text-emerald-600 dark:text-emerald-400' : 'text-rose-600 dark:text-rose-400'
+            trendColor = isNegative ? 'text-emerald-500' : 'text-rose-500'
         } else {
-            trendColor = isPositive ? 'text-emerald-600 dark:text-emerald-400' : 'text-rose-600 dark:text-rose-400'
+            trendColor = isPositive ? 'text-emerald-500' : 'text-rose-500'
         }
     }
 
     return (
-        <div className="group relative overflow-hidden rounded-3xl bg-white/50 p-6 shadow-sm ring-1 ring-black/5 transition-all hover:bg-white/80 dark:bg-white/5 dark:ring-white/10 dark:hover:bg-white/10 backdrop-blur-xl">
-            <dt className="text-sm font-medium text-muted-foreground">
+        <div className="group relative overflow-hidden rounded-2xl bg-white/5 backdrop-blur-xl p-5 border border-white/10 ring-1 ring-white/5 transition-all hover:bg-white/10">
+            <dt className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
                 {label}
             </dt>
             <dd className="mt-2 flex items-baseline justify-between">
-                <span className="text-3xl font-bold tracking-tight text-foreground">
+                <span className="text-2xl font-bold tracking-tight text-foreground">
                     {value}
                     <span className="ml-1 text-sm font-normal text-muted-foreground">{unit}</span>
                 </span>
                 {prevValue !== undefined && (
                     <span
                         className={cn(
-                            'flex items-center text-xs font-medium px-2 py-1 rounded-full bg-black/5 dark:bg-white/5',
+                            'flex items-center text-xs font-medium px-2 py-1 rounded-full bg-white/5',
                             trendColor
                         )}
                     >
@@ -76,7 +76,7 @@ export default function DashboardStats({
     return (
         <div className="space-y-6">
             {/* Global Progress Card */}
-            <div className="relative overflow-hidden rounded-3xl bg-foreground p-8 text-background shadow-2xl ring-1 ring-white/10 dark:ring-black/10">
+            <div className="relative overflow-hidden rounded-3xl bg-foreground p-6 sm:p-8 text-background shadow-2xl">
                 <div className="absolute top-0 right-0 -mt-4 -mr-4 h-32 w-32 rounded-full bg-white/10 blur-3xl opacity-50" />
                 <div className="absolute bottom-0 left-0 -mb-4 -ml-4 h-32 w-32 rounded-full bg-indigo-500/20 blur-3xl opacity-50" />
 
@@ -88,23 +88,23 @@ export default function DashboardStats({
                                 Progreso este mes
                             </p>
                             <div className="mt-3 flex items-baseline gap-1">
-                                <span className="text-5xl font-bold tracking-tighter">
+                                <span className="text-4xl sm:text-5xl font-bold tracking-tighter">
                                     {Math.abs(monthlyDiff).toFixed(1)}
                                 </span>
-                                <span className="text-xl font-medium opacity-60">kg</span>
+                                <span className="text-lg sm:text-xl font-medium opacity-60">kg</span>
                             </div>
                         </div>
-                        <div className={cn("rounded-2xl bg-white/10 p-4 backdrop-blur-sm shadow-inner", monthlyDiff === 0 && "opacity-50")}>
+                        <div className={cn("rounded-2xl bg-white/10 p-3 sm:p-4 backdrop-blur-sm", monthlyDiff === 0 && "opacity-50")}>
                             {monthlyDiff < 0 ? (
-                                <ArrowDown className="h-8 w-8 text-emerald-400" />
+                                <ArrowDown className="h-6 w-6 sm:h-8 sm:w-8 text-emerald-400" />
                             ) : monthlyDiff > 0 ? (
-                                <ArrowUp className="h-8 w-8 text-rose-400" />
+                                <ArrowUp className="h-6 w-6 sm:h-8 sm:w-8 text-rose-400" />
                             ) : (
-                                <Minus className="h-8 w-8 text-white" />
+                                <Minus className="h-6 w-6 sm:h-8 sm:w-8 text-white" />
                             )}
                         </div>
                     </div>
-                    <p className="mt-6 text-sm font-medium opacity-70">
+                    <p className="mt-4 sm:mt-6 text-sm font-medium opacity-70">
                         {monthlyDiff < 0
                             ? 'Has bajado de peso. ¡Sigue así!'
                             : monthlyDiff > 0
@@ -115,7 +115,7 @@ export default function DashboardStats({
             </div>
 
             {/* Quick Stats Grid */}
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
                 <StatCard
                     label="Peso"
                     value={current.weight}
@@ -131,21 +131,21 @@ export default function DashboardStats({
                     inverse
                 />
                 <StatCard
-                    label="Grasa Corporal"
+                    label="Grasa"
                     value={current.body_fat_percent}
                     prevValue={previous?.body_fat_percent}
                     unit="%"
                     inverse
                 />
                 <StatCard
-                    label="Masa Grasa"
+                    label="M. Grasa"
                     value={current.fat_mass_kg}
                     prevValue={previous?.fat_mass_kg}
                     unit="kg"
                     inverse
                 />
                 <StatCard
-                    label="Masa Muscular"
+                    label="Músculo"
                     value={current.muscle_mass_kg}
                     prevValue={previous?.muscle_mass_kg}
                     unit="kg"

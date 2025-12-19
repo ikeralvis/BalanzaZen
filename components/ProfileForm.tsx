@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { updateProfile } from '@/app/profile/actions'
-import { Loader2 } from 'lucide-react'
+import { Loader2, User } from 'lucide-react'
 
 interface ProfileFormProps {
     initialData: {
@@ -24,19 +24,22 @@ export default function ProfileForm({ initialData }: ProfileFormProps) {
         if (result?.error) {
             setMessage('Error: ' + result.error)
         } else {
-            setMessage('Perfil actualizado correctamente')
+            setMessage('Perfil actualizado')
         }
 
         setIsLoading(false)
     }
 
     return (
-        <form action={handleSubmit} className="space-y-4 rounded-xl bg-white p-6 shadow-sm ring-1 ring-gray-900/5 dark:bg-gray-800 dark:ring-gray-700">
-            <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Datos Personales</h2>
+        <form action={handleSubmit} className="rounded-2xl bg-white/5 backdrop-blur-xl p-5 border border-white/10 ring-1 ring-white/5 space-y-4">
+            <div className="flex items-center gap-2 mb-4">
+                <User className="w-5 h-5 text-muted-foreground" />
+                <h2 className="text-lg font-semibold tracking-tight text-foreground">Datos Personales</h2>
+            </div>
 
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div>
-                    <label htmlFor="age" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label htmlFor="age" className="block text-xs font-medium text-muted-foreground uppercase tracking-wide mb-2">
                         Edad
                     </label>
                     <input
@@ -45,11 +48,11 @@ export default function ProfileForm({ initialData }: ProfileFormProps) {
                         type="number"
                         defaultValue={initialData.age || ''}
                         required
-                        className="block w-full rounded-xl border-gray-200 bg-gray-50 h-14 text-lg shadow-sm focus:bg-white focus:border-indigo-500 focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white transition-colors"
+                        className="block w-full rounded-xl border border-white/10 bg-white/5 h-12 px-4 text-lg shadow-sm focus:border-white/20 focus:ring-1 focus:ring-white/20 transition-colors outline-none text-foreground placeholder:text-muted-foreground/50"
                     />
                 </div>
                 <div>
-                    <label htmlFor="height" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label htmlFor="height" className="block text-xs font-medium text-muted-foreground uppercase tracking-wide mb-2">
                         Altura (cm)
                     </label>
                     <input
@@ -58,20 +61,20 @@ export default function ProfileForm({ initialData }: ProfileFormProps) {
                         type="number"
                         defaultValue={initialData.height || ''}
                         required
-                        className="block w-full rounded-xl border-gray-200 bg-gray-50 h-14 text-lg shadow-sm focus:bg-white focus:border-indigo-500 focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white transition-colors"
+                        className="block w-full rounded-xl border border-white/10 bg-white/5 h-12 px-4 text-lg shadow-sm focus:border-white/20 focus:ring-1 focus:ring-white/20 transition-colors outline-none text-foreground placeholder:text-muted-foreground/50"
                     />
                 </div>
             </div>
 
             <div className="flex items-center justify-between pt-2">
-                <span className="text-sm text-green-600 font-medium">{message}</span>
+                <span className="text-sm text-emerald-500 font-medium">{message}</span>
                 <button
                     type="submit"
                     disabled={isLoading}
-                    className="inline-flex justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:opacity-70"
+                    className="inline-flex justify-center items-center rounded-xl bg-foreground text-background px-4 py-2.5 text-sm font-medium hover:opacity-90 disabled:opacity-70 transition-opacity"
                 >
                     {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                    Guardar Cambios
+                    Guardar
                 </button>
             </div>
         </form>

@@ -1,7 +1,5 @@
 import { createClient } from '@/utils/supabase/server'
 import { redirect } from 'next/navigation'
-import Link from 'next/link'
-import { User } from 'lucide-react'
 import DashboardStats from '@/components/DashboardStats'
 import Charts from '@/components/Charts'
 
@@ -49,25 +47,16 @@ export default async function Home() {
             : 0
 
     return (
-        <main className="min-h-screen bg-gray-50 pb-20 dark:bg-gray-900">
-            <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-                <div className="mb-8 flex items-center justify-between">
+        <main className="min-h-screen bg-background pb-32 pt-20">
+            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div className="mb-6 flex items-center justify-between">
                     <div>
-                        <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
+                        <h1 className="text-2xl font-bold tracking-tight text-foreground">
                             Dashboard
                         </h1>
-                        <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
+                        <p className="mt-1 text-sm text-muted-foreground">
                             Bienvenido de nuevo
                         </p>
-                    </div>
-                    <div className="flex items-center space-x-4">
-                        <Link
-                            href="/profile"
-                            className="rounded-full bg-white p-2 shadow-sm ring-1 ring-gray-900/5 hover:bg-gray-50 dark:bg-gray-800 dark:ring-gray-700 dark:hover:bg-gray-700 transition-colors"
-                            aria-label="Perfil"
-                        >
-                            <User className="h-6 w-6 text-gray-500 dark:text-gray-400" />
-                        </Link>
                     </div>
                 </div>
 
@@ -83,11 +72,11 @@ export default async function Home() {
 
                     </div>
                 ) : (
-                    <div className="flex h-64 flex-col items-center justify-center rounded-xl border-2 border-dashed border-gray-300 bg-white p-12 text-center dark:bg-gray-800 dark:border-gray-700">
-                        <h3 className="mt-2 text-sm font-semibold text-gray-900 dark:text-white">
+                    <div className="flex h-64 flex-col items-center justify-center rounded-3xl border border-dashed border-border p-12 text-center bg-muted/10">
+                        <h3 className="mt-2 text-sm font-semibold text-foreground">
                             No hay registros
                         </h3>
-                        <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
+                        <p className="mt-1 text-sm text-muted-foreground">
                             Empieza registrando tu peso de hoy.
                         </p>
                     </div>

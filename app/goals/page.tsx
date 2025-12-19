@@ -2,8 +2,6 @@ import { createClient } from '@/utils/supabase/server'
 import { redirect } from 'next/navigation'
 import GoalForm from '@/components/GoalForm'
 import GoalProgress from '@/components/GoalProgress'
-import Link from 'next/link'
-import { ArrowLeft } from 'lucide-react'
 
 export default async function GoalsPage() {
     const supabase = await createClient()
@@ -53,22 +51,18 @@ export default async function GoalsPage() {
     const startWeight = oldest?.weight
 
     return (
-        <main className="min-h-screen bg-gray-50 pb-24 dark:bg-gray-900">
-            <div className="mx-auto max-w-lg px-4 py-8">
+        <main className="min-h-screen bg-background pb-32 pt-20">
+            <div className="mx-auto max-w-lg px-4">
                 <div className="mb-6">
-                    <Link
-                        href="/"
-                        className="inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
-                    >
-                        <ArrowLeft className="mr-2 h-4 w-4" />
-                        Volver al Dashboard
-                    </Link>
-                    <h1 className="mt-4 text-2xl font-bold text-gray-900 dark:text-white">
-                        Mis Metas
+                    <h1 className="text-2xl font-bold tracking-tight text-foreground">
+                        Metas
                     </h1>
+                    <p className="mt-1 text-sm text-muted-foreground">
+                        Define y sigue tu objetivo de peso
+                    </p>
                 </div>
 
-                <div className="space-y-6">
+                <div className="space-y-4">
                     {targetWeight && currentWeight && startWeight ? (
                         <GoalProgress
                             currentWeight={currentWeight}
@@ -76,8 +70,8 @@ export default async function GoalsPage() {
                             targetWeight={targetWeight}
                         />
                     ) : (
-                        <div className="rounded-xl bg-indigo-50 p-6 text-center dark:bg-indigo-900/30">
-                            <p className="text-indigo-800 dark:text-indigo-200">
+                        <div className="rounded-2xl bg-white/5 backdrop-blur-xl p-6 text-center border border-white/10">
+                            <p className="text-muted-foreground text-sm">
                                 {!currentWeight
                                     ? 'Añade tu primer registro de peso para ver tu progreso.'
                                     : 'Configura una meta de peso para empezar.'}

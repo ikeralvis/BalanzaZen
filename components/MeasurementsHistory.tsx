@@ -33,37 +33,37 @@ export default function MeasurementsHistory({ initialMeasurements }: { initialMe
     }
 
     return (
-        <div className="rounded-xl bg-white shadow-sm ring-1 ring-gray-900/5 dark:bg-gray-800 dark:ring-gray-700">
-            <div className="p-6">
-                <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Historial de Registros</h2>
+        <div className="rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 ring-1 ring-white/5 overflow-hidden">
+            <div className="p-5 border-b border-white/10">
+                <h2 className="text-lg font-semibold tracking-tight text-foreground">Historial de Registros</h2>
             </div>
-            <div className="overflow-x-auto border-t border-gray-100 dark:border-gray-700">
-                <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-                    <thead className="bg-gray-50 dark:bg-gray-800/50">
+            <div className="overflow-x-auto">
+                <table className="min-w-full divide-y divide-white/10">
+                    <thead className="bg-white/5">
                         <tr>
-                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Fecha</th>
-                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Peso</th>
-                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Grasa %</th>
-                            <th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Acciones</th>
+                            <th scope="col" className="px-5 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">Fecha</th>
+                            <th scope="col" className="px-5 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">Peso</th>
+                            <th scope="col" className="px-5 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">Grasa %</th>
+                            <th scope="col" className="px-5 py-3 text-right text-xs font-medium text-muted-foreground uppercase tracking-wider">Acciones</th>
                         </tr>
                     </thead>
-                    <tbody className="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
+                    <tbody className="divide-y divide-white/5">
                         {measurements.map((m) => (
-                            <tr key={m.id}>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+                            <tr key={m.id} className="hover:bg-white/5 transition-colors">
+                                <td className="px-5 py-4 whitespace-nowrap text-sm text-foreground">
                                     {format(new Date(m.date), 'd MMM yyyy', { locale: es })}
                                 </td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300">
+                                <td className="px-5 py-4 whitespace-nowrap text-sm text-foreground">
                                     {m.weight} kg
                                 </td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300">
+                                <td className="px-5 py-4 whitespace-nowrap text-sm text-foreground">
                                     {m.body_fat_percent}%
                                 </td>
-                                <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                <td className="px-5 py-4 whitespace-nowrap text-right text-sm font-medium">
                                     <button
                                         onClick={() => handleDelete(m.id)}
                                         disabled={isDeleting === m.id}
-                                        className="text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-300 disabled:opacity-50"
+                                        className="text-rose-500 hover:text-rose-400 disabled:opacity-50 transition-colors bg-rose-500/10 p-2 rounded-full"
                                     >
                                         <Trash2 className="h-4 w-4" />
                                     </button>
@@ -73,7 +73,7 @@ export default function MeasurementsHistory({ initialMeasurements }: { initialMe
                     </tbody>
                 </table>
                 {measurements.length === 0 && (
-                    <div className="p-6 text-center text-sm text-gray-500">
+                    <div className="p-6 text-center text-sm text-muted-foreground">
                         No hay registros disponibles.
                     </div>
                 )}
